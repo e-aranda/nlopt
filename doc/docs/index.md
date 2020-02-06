@@ -1,5 +1,5 @@
 ---
-# NLopt
+# MiNLopt
 ---
 
 
