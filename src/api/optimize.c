@@ -31,12 +31,14 @@
 #include "praxis.h"
 #include "direct.h"
 
+/*
 #ifdef NLOPT_CXX
 #include "stogo.h"
 #endif
 #ifdef NLOPT_CXX11
 #include "ags.h"
 #endif
+*/
 
 #include "cdirect.h"
 
@@ -498,6 +500,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             break;
         }
 
+/*
     case NLOPT_GN_AGS:
 #ifdef NLOPT_CXX11
         if (!finite_domain(n, lb, ub))
@@ -519,7 +522,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
 #else
         return NLOPT_INVALID_ARGS;
 #endif
-
+*/
 #if 0
         /* lacking a free/open-source license, we no longer use
            Rowan's code, and instead use by "sbplx" re-implementation */
