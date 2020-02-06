@@ -210,8 +210,8 @@ set (NLOPT_SOURCES
   src/algs/cobyla/cobyla.c src/algs/cobyla/cobyla.h
   src/algs/newuoa/newuoa.c src/algs/newuoa/newuoa.h
   src/algs/neldermead/nldrmd.c src/algs/neldermead/neldermead.h src/algs/neldermead/sbplx.c
-  src/algs/auglag/auglag.c src/algs/auglag/auglag.h
-  src/algs/bobyqa/bobyqa.c src/algs/bobyqa/bobyqa.h
+#  src/algs/auglag/auglag.c src/algs/auglag/auglag.h
+#  src/algs/bobyqa/bobyqa.c src/algs/bobyqa/bobyqa.h
   src/algs/isres/isres.c src/algs/isres/isres.h
   src/algs/slsqp/slsqp.c src/algs/slsqp/slsqp.h
   src/algs/esch/esch.c src/algs/esch/esch.h
@@ -256,8 +256,8 @@ target_include_directories (${nlopt_lib} PRIVATE
   src/algs/cobyla
   src/algs/newuoa
   src/algs/neldermead
-  src/algs/auglag
-  src/algs/bobyqa
+#  src/algs/auglag
+#  src/algs/bobyqa
   src/algs/isres
   src/algs/slsqp
   src/algs/esch

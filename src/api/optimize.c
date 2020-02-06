@@ -51,8 +51,8 @@
 #include "cobyla.h"
 #include "newuoa.h"
 #include "neldermead.h"
-#include "auglag.h"
-#include "bobyqa.h"
+//#include "auglag.h"
+//#include "bobyqa.h"
 #include "isres.h"
 #include "esch.h"
 #include "slsqp.h"
@@ -692,22 +692,22 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             return newuoa(ni, 2 * n + 1, x, lb, ub, step, &stop, minf, f_noderiv, opt);
         }
 
-    case NLOPT_LN_BOBYQA:
-        {
-            nlopt_result ret;
-            int freedx = 0;
-            if (!opt->dx) {
-                freedx = 1;
-                if (nlopt_set_default_initial_step(opt, x) != NLOPT_SUCCESS)
-                    RETURN_ERR(NLOPT_OUT_OF_MEMORY, opt, "failed to allocate initial step");
-            }
-            ret = bobyqa(ni, 2 * n + 1, x, lb, ub, opt->dx, &stop, minf, opt->f, opt->f_data);
-            if (freedx) {
-                free(opt->dx);
-                opt->dx = NULL;
-            }
-            return ret;
-        }
+//    case NLOPT_LN_BOBYQA:
+//        {
+//            nlopt_result ret;
+//            int freedx = 0;
+//            if (!opt->dx) {
+//                freedx = 1;
+//                if (nlopt_set_default_initial_step(opt, x) != NLOPT_SUCCESS)
+//                    RETURN_ERR(NLOPT_OUT_OF_MEMORY, opt, "failed to allocate initial step");
+//            }
+//            ret = bobyqa(ni, 2 * n + 1, x, lb, ub, opt->dx, &stop, minf, opt->f, opt->f_data);
+//            if (freedx) {
+//                free(opt->dx);
+//                opt->dx = NULL;
+//            }
+//            return ret;
+//        }
 
     case NLOPT_LN_NELDERMEAD:
     case NLOPT_LN_SBPLX:
@@ -730,39 +730,39 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             return ret;
         }
 
-    case NLOPT_AUGLAG:
-    case NLOPT_AUGLAG_EQ:
-    case NLOPT_LN_AUGLAG:
-    case NLOPT_LN_AUGLAG_EQ:
-    case NLOPT_LD_AUGLAG:
-    case NLOPT_LD_AUGLAG_EQ:
-        {
-            nlopt_opt local_opt = opt->local_opt;
-            nlopt_result ret;
-            if ((algorithm == NLOPT_AUGLAG || algorithm == NLOPT_AUGLAG_EQ)
-                && !local_opt)
-                RETURN_ERR(NLOPT_INVALID_ARGS, opt, "local optimizer must be specified for AUGLAG");
-            if (!local_opt) {   /* default */
-                local_opt = nlopt_create(algorithm == NLOPT_LN_AUGLAG || algorithm == NLOPT_LN_AUGLAG_EQ ? nlopt_local_search_alg_nonderiv : nlopt_local_search_alg_deriv, n);
-                if (!local_opt)
-                    RETURN_ERR(NLOPT_FAILURE, opt, "failed to create local_opt");
-                nlopt_set_ftol_rel(local_opt, opt->ftol_rel);
-                nlopt_set_ftol_abs(local_opt, opt->ftol_abs);
-                nlopt_set_xtol_rel(local_opt, opt->xtol_rel);
-                nlopt_set_xtol_abs(local_opt, opt->xtol_abs);
-                nlopt_set_maxeval(local_opt, nlopt_local_search_maxeval);
-            }
-            if (opt->dx)
-                nlopt_set_initial_step(local_opt, opt->dx);
-            opt->force_stop_child = local_opt;
-            ret = auglag_minimize(ni, f, f_data,
-                                  opt->m, opt->fc,
-                                  opt->p, opt->h, lb, ub, x, minf, &stop, local_opt, algorithm == NLOPT_AUGLAG_EQ || algorithm == NLOPT_LN_AUGLAG_EQ || algorithm == NLOPT_LD_AUGLAG_EQ);
-            opt->force_stop_child = NULL;
-            if (!opt->local_opt)
-                nlopt_destroy(local_opt);
-            return ret;
-        }
+//    case NLOPT_AUGLAG:
+//    case NLOPT_AUGLAG_EQ:
+//    case NLOPT_LN_AUGLAG:
+//    case NLOPT_LN_AUGLAG_EQ:
+//    case NLOPT_LD_AUGLAG:
+//    case NLOPT_LD_AUGLAG_EQ:
+//        {
+//            nlopt_opt local_opt = opt->local_opt;
+//            nlopt_result ret;
+//            if ((algorithm == NLOPT_AUGLAG || algorithm == NLOPT_AUGLAG_EQ)
+//                && !local_opt)
+//                RETURN_ERR(NLOPT_INVALID_ARGS, opt, "local optimizer must be specified for AUGLAG");
+//            if (!local_opt) {   /* default */
+//                local_opt = nlopt_create(algorithm == NLOPT_LN_AUGLAG || algorithm == NLOPT_LN_AUGLAG_EQ ? nlopt_local_search_alg_nonderiv : nlopt_local_search_alg_deriv, n);
+//                if (!local_opt)
+//                    RETURN_ERR(NLOPT_FAILURE, opt, "failed to create local_opt");
+//                nlopt_set_ftol_rel(local_opt, opt->ftol_rel);
+//                nlopt_set_ftol_abs(local_opt, opt->ftol_abs);
+//                nlopt_set_xtol_rel(local_opt, opt->xtol_rel);
+//                nlopt_set_xtol_abs(local_opt, opt->xtol_abs);
+//                nlopt_set_maxeval(local_opt, nlopt_local_search_maxeval);
+//            }
+//            if (opt->dx)
+//                nlopt_set_initial_step(local_opt, opt->dx);
+//            opt->force_stop_child = local_opt;
+//            ret = auglag_minimize(ni, f, f_data,
+//                                  opt->m, opt->fc,
+//                                  opt->p, opt->h, lb, ub, x, minf, &stop, local_opt, algorithm == NLOPT_AUGLAG_EQ || algorithm == NLOPT_LN_AUGLAG_EQ || algorithm == NLOPT_LD_AUGLAG_EQ);
+//            opt->force_stop_child = NULL;
+//            if (!opt->local_opt)
+//                nlopt_destroy(local_opt);
+//            return ret;
+//        }
 
     case NLOPT_GN_ISRES:
         if (!finite_domain(n, lb, ub))
