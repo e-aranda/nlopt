@@ -40,7 +40,7 @@
 #endif
 */
 
-#include "cdirect.h"
+//#include "cdirect.h"
 
 /*
 #include "luksan.h"
@@ -272,13 +272,13 @@ static nlopt_opt elimdim_create(nlopt_opt opt)
         nlopt_destroy(opt0);
         return NULL;
     }
-
+/*
     if (opt->algorithm == NLOPT_GD_STOGO || opt->algorithm == NLOPT_GD_STOGO_RAND) {
         grad = (double *) malloc(sizeof(double) * opt->n);
         if (opt->n && !grad)
             goto bad;
     }
-
+*/
     opt0->n = elimdim_dimension(opt->n, opt->lb, opt->ub);
     elimdim_shrink(opt->n, opt0->lb, opt->lb, opt->ub);
     elimdim_shrink(opt->n, opt0->ub, opt->lb, opt->ub);
@@ -347,6 +347,7 @@ static int elimdim_wrapcheck(nlopt_opt opt)
         return 0;
     if (elimdim_dimension(opt->n, opt->lb, opt->ub) == opt->n)
         return 0;
+/*
     switch (opt->algorithm) {
     case NLOPT_GN_DIRECT:
     case NLOPT_GN_DIRECT_L:
@@ -372,13 +373,14 @@ static int elimdim_wrapcheck(nlopt_opt opt)
         return 1;
 
     default:
+*/
         return 0;
-    }
+//    }
 }
 
 /*********************************************************************/
 
-#define POP(defaultpop) (opt->stochastic_population > 0 ? opt->stochastic_population : (nlopt_stochastic_population > 0 ? nlopt_stochastic_population : (defaultpop)))
+//#define POP(defaultpop) (opt->stochastic_population > 0 ? opt->stochastic_population : (nlopt_stochastic_population > 0 ? nlopt_stochastic_population : (defaultpop)))
 
 /* unlike nlopt_optimize() below, only handles minimization case */
 static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
@@ -440,14 +442,15 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
     stop.stop_msg = &(opt->errmsg);
 
     switch (algorithm) {
-    case NLOPT_GN_DIRECT:
-    case NLOPT_GN_DIRECT_L:
+//    case NLOPT_GN_DIRECT:
+//    case NLOPT_GN_DIRECT_L:
+/*
     case NLOPT_GN_DIRECT_L_RAND:
         if (!finite_domain(n, lb, ub))
             RETURN_ERR(NLOPT_INVALID_ARGS, opt, "finite domain required for global algorithm");
         return cdirect(ni, f, f_data, lb, ub, x, minf, &stop, 0.0, (algorithm != NLOPT_GN_DIRECT) + 3 * (algorithm == NLOPT_GN_DIRECT_L_RAND ? 2 : (algorithm != NLOPT_GN_DIRECT))
                        + 9 * (algorithm == NLOPT_GN_DIRECT_L_RAND ? 1 : (algorithm != NLOPT_GN_DIRECT)));
-
+*
     case NLOPT_GN_DIRECT_NOSCAL:
     case NLOPT_GN_DIRECT_L_NOSCAL:
     case NLOPT_GN_DIRECT_L_RAND_NOSCAL:
@@ -455,8 +458,8 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             RETURN_ERR(NLOPT_INVALID_ARGS, opt, "finite domain required for global algorithm");
         return cdirect_unscaled(ni, f, f_data, lb, ub, x, minf, &stop, 0.0, (algorithm != NLOPT_GN_DIRECT) + 3 * (algorithm == NLOPT_GN_DIRECT_L_RAND ? 2 : (algorithm != NLOPT_GN_DIRECT))
                                 + 9 * (algorithm == NLOPT_GN_DIRECT_L_RAND ? 1 : (algorithm != NLOPT_GN_DIRECT)));
-
-    case NLOPT_GN_ORIG_DIRECT:
+*/
+//    case NLOPT_GN_ORIG_DIRECT:
     case NLOPT_GN_ORIG_DIRECT_L:
         {
             direct_return_code dret;
@@ -659,7 +662,6 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             nlopt_destroy(dual_opt);
             return ret;
         }
-
 /*
     case NLOPT_LN_COBYLA:
         {
