@@ -28,7 +28,7 @@
 
 /*********************************************************************/
 
-#include "praxis.h"
+//#include "praxis.h"
 #include "direct.h"
 
 /*
@@ -42,20 +42,22 @@
 
 #include "cdirect.h"
 
+/*
 #include "luksan.h"
-
 #include "crs.h"
-
 #include "mlsl.h"
+*/
 #include "mma.h"
+/*
 #include "cobyla.h"
 #include "newuoa.h"
 #include "neldermead.h"
+*/
 //#include "auglag.h"
 //#include "bobyqa.h"
-#include "isres.h"
-#include "esch.h"
-#include "slsqp.h"
+//#include "isres.h"
+//#include "esch.h"
+//#include "slsqp.h"
 
 /*********************************************************************/
 
@@ -523,9 +525,11 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
         return NLOPT_INVALID_ARGS;
 #endif
 */
-#if 0
+
+//#if 0
         /* lacking a free/open-source license, we no longer use
            Rowan's code, and instead use by "sbplx" re-implementation */
+/*
     case NLOPT_LN_SUBPLEX:
         {
             int iret, freedx = 0;
@@ -559,20 +563,20 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             case -200:
                 return NLOPT_OUT_OF_MEMORY;
             default:
-                return NLOPT_FAILURE;   /* unknown return code */
+                return NLOPT_FAILURE;   
             }
             break;
         }
 #endif
-
-    case NLOPT_LN_PRAXIS:
-        {
-            double step;
-            if (initial_step(opt, x, &step) != NLOPT_SUCCESS)
-                return NLOPT_OUT_OF_MEMORY;
-            return praxis_(0.0, DBL_EPSILON, step, ni, x, f_bound, opt, &stop, minf);
-        }
-
+*/
+//    case NLOPT_LN_PRAXIS:
+//        {
+//            double step;
+//            if (initial_step(opt, x, &step) != NLOPT_SUCCESS)
+//                return NLOPT_OUT_OF_MEMORY;
+//            return praxis_(0.0, DBL_EPSILON, step, ni, x, f_bound, opt, &stop, minf);
+//        }
+/*
     case NLOPT_LD_LBFGS:
         return luksan_plis(ni, f, f_data, lb, ub, x, minf, &stop, opt->vector_storage);
 
@@ -604,10 +608,9 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
                 RETURN_ERR(NLOPT_INVALID_ARGS, opt, "finite domain required for global algorithm");
             if (!local_opt && (algorithm == NLOPT_G_MLSL || algorithm == NLOPT_G_MLSL_LDS))
                 RETURN_ERR(NLOPT_INVALID_ARGS, opt, "local optimizer must be specified for G_MLSL");
-            if (!local_opt) {   /* default */
+            if (!local_opt) {
                 nlopt_algorithm local_alg = (algorithm == NLOPT_GN_MLSL || algorithm == NLOPT_GN_MLSL_LDS)
                     ? nlopt_local_search_alg_nonderiv : nlopt_local_search_alg_deriv;
-                /* don't call MLSL recursively! */
                 if (local_alg >= NLOPT_GN_MLSL && local_alg <= NLOPT_GD_MLSL_LDS)
                     local_alg = (algorithm == NLOPT_GN_MLSL || algorithm == NLOPT_GN_MLSL_LDS)
                         ? NLOPT_LN_COBYLA : NLOPT_LD_MMA;
@@ -624,8 +627,6 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
                 nlopt_set_initial_step(local_opt, opt->dx);
             for (i = 0; i < n && stop.xtol_abs[i] > 0; ++i);
             if (local_opt->ftol_rel <= 0 && local_opt->ftol_abs <= 0 && local_opt->xtol_rel <= 0 && i < n) {
-                /* it is not sensible to call MLSL without *some*
-                   nonzero tolerance for the local search */
                 nlopt_set_ftol_rel(local_opt, 1e-15);
                 nlopt_set_xtol_rel(local_opt, 1e-7);
             }
@@ -636,7 +637,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
                 nlopt_destroy(local_opt);
             return ret;
         }
-
+*/
     case NLOPT_LD_MMA:
     case NLOPT_LD_CCSAQ:
         {
@@ -659,6 +660,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             return ret;
         }
 
+/*
     case NLOPT_LN_COBYLA:
         {
             nlopt_result ret;
@@ -691,7 +693,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
                 RETURN_ERR(NLOPT_OUT_OF_MEMORY, opt, "failed to allocate initial step");
             return newuoa(ni, 2 * n + 1, x, lb, ub, step, &stop, minf, f_noderiv, opt);
         }
-
+*/
 //    case NLOPT_LN_BOBYQA:
 //        {
 //            nlopt_result ret;
@@ -709,7 +711,8 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
 //            return ret;
 //        }
 
-    case NLOPT_LN_NELDERMEAD:
+//    case NLOPT_LN_NELDERMEAD:
+/*
     case NLOPT_LN_SBPLX:
         {
             nlopt_result ret;
@@ -729,7 +732,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             }
             return ret;
         }
-
+*/
 //    case NLOPT_AUGLAG:
 //    case NLOPT_AUGLAG_EQ:
 //    case NLOPT_LN_AUGLAG:
@@ -763,7 +766,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
 //                nlopt_destroy(local_opt);
 //            return ret;
 //        }
-
+/*
     case NLOPT_GN_ISRES:
         if (!finite_domain(n, lb, ub))
             RETURN_ERR(NLOPT_INVALID_ARGS, opt, "finite domain required for global algorithm");
@@ -773,9 +776,9 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
         if (!finite_domain(n, lb, ub))
             RETURN_ERR(NLOPT_INVALID_ARGS, opt, "finite domain required for global algorithm");
         return chevolutionarystrategy(n, f, f_data, lb, ub, x, minf, &stop, (unsigned) POP(0), (unsigned) (POP(0) * 1.5));
-
-    case NLOPT_LD_SLSQP:
-        return nlopt_slsqp(n, f, f_data, opt->m, opt->fc, opt->p, opt->h, lb, ub, x, minf, &stop);
+*/
+//    case NLOPT_LD_SLSQP:
+//        return nlopt_slsqp(n, f, f_data, opt->m, opt->fc, opt->p, opt->h, lb, ub, x, minf, &stop);
 
     default:
         return NLOPT_INVALID_ARGS;
