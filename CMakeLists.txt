@@ -215,7 +215,7 @@ set (NLOPT_SOURCES
 #  src/algs/isres/isres.c src/algs/isres/isres.h
 #  src/algs/slsqp/slsqp.c src/algs/slsqp/slsqp.h
 #  src/algs/esch/esch.c src/algs/esch/esch.h
-  src/api/general.c src/api/options.c src/api/optimize.c src/api/deprecated.c src/api/nlopt-internal.h src/api/nlopt.h src/api/f77api.c src/api/f77funcs.h src/api/f77funcs_.h src/api/nlopt.hpp src/api/nlopt-in.hpp
+  src/api/general.c src/api/options.c src/api/optimize.c src/api/deprecated.c src/api/nlopt-internal.h src/api/nlopt.h src/api/nlopt.hpp src/api/nlopt-in.hpp
   src/util/mt19937ar.c src/util/sobolseq.c src/util/soboldata.h src/util/timer.c src/util/stop.c src/util/nlopt-util.h src/util/redblack.c src/util/redblack.h src/util/qsort_r.c src/util/rescale.c
 )
 
@@ -381,3 +381,4 @@ install (FILES
           ${CMAKE_CURRENT_BINARY_DIR}/NLoptConfigVersion.cmake
          DESTINATION ${RELATIVE_INSTALL_CMAKE_DIR}
          COMPONENT Development)
+
