@@ -29,7 +29,7 @@
 /*********************************************************************/
 
 //#include "praxis.h"
-#include "direct.h"
+//#include "direct.h"
 
 /*
 #ifdef NLOPT_CXX
@@ -460,6 +460,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
                                 + 9 * (algorithm == NLOPT_GN_DIRECT_L_RAND ? 1 : (algorithm != NLOPT_GN_DIRECT)));
 */
 //    case NLOPT_GN_ORIG_DIRECT:
+/*
     case NLOPT_GN_ORIG_DIRECT_L:
         {
             direct_return_code dret;
@@ -504,7 +505,7 @@ static nlopt_result nlopt_optimize_(nlopt_opt opt, double *x, double *minf)
             }
             break;
         }
-
+*/
 /*
     case NLOPT_GN_AGS:
 #ifdef NLOPT_CXX11

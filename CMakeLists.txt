@@ -200,7 +200,7 @@ set (NLOPT_HEADERS
 )
 
 set (NLOPT_SOURCES
-  src/algs/direct/DIRect.c src/algs/direct/direct_wrap.c src/algs/direct/DIRserial.c src/algs/direct/DIRsubrout.c src/algs/direct/direct-internal.h src/algs/direct/direct.h
+#  src/algs/direct/DIRect.c src/algs/direct/direct_wrap.c src/algs/direct/DIRserial.c src/algs/direct/DIRsubrout.c src/algs/direct/direct-internal.h src/algs/direct/direct.h
 #  src/algs/cdirect/cdirect.c src/algs/cdirect/hybrid.c src/algs/cdirect/cdirect.h
 #  src/algs/praxis/praxis.c src/algs/praxis/praxis.h
 #  src/algs/luksan/plis.c src/algs/luksan/plip.c src/algs/luksan/pnet.c src/algs/luksan/mssubs.c src/algs/luksan/pssubs.c src/algs/luksan/luksan.h
@@ -246,7 +246,7 @@ target_include_directories (${nlopt_lib} PRIVATE
  # src/algs/stogo
  # src/algs/ags
   src/util
-  src/algs/direct
+#  src/algs/direct
 #  src/algs/cdirect
 #  src/algs/praxis
 #  src/algs/luksan
