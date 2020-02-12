@@ -53,25 +53,25 @@ extern "C" {
     int nlopt_isnan(double x);
 
 /* re-entrant qsort, uses the BSD convention */
-    extern void nlopt_qsort_r(void *base_, size_t nmemb, size_t size, void *thunk, int (*compar) (void *, const void *, const void *));
+//    extern void nlopt_qsort_r(void *base_, size_t nmemb, size_t size, void *thunk, int (*compar) (void *, const void *, const void *));
 
 /* seconds timer */
     extern double nlopt_seconds(void);
     extern unsigned long nlopt_time_seed(void);
 
 /* pseudorandom number generation by Mersenne twister algorithm */
-    extern void nlopt_init_genrand(unsigned long s);
-    extern double nlopt_urand(double a, double b);
-    extern int nlopt_iurand(int n);
-    extern double nlopt_nrand(double mean, double stddev);
+//    extern void nlopt_init_genrand(unsigned long s);
+//    extern double nlopt_urand(double a, double b);
+//    extern int nlopt_iurand(int n);
+//    extern double nlopt_nrand(double mean, double stddev);
 
 /* Sobol' low-discrepancy-sequence generation */
-    typedef struct nlopt_soboldata_s *nlopt_sobol;
-    extern nlopt_sobol nlopt_sobol_create(unsigned sdim);
-    extern void nlopt_sobol_destroy(nlopt_sobol s);
-    extern void nlopt_sobol_next01(nlopt_sobol s, double *x);
-    extern void nlopt_sobol_next(nlopt_sobol s, double *x, const double *lb, const double *ub);
-    extern void nlopt_sobol_skip(nlopt_sobol s, unsigned n, double *x);
+//    typedef struct nlopt_soboldata_s *nlopt_sobol;
+//    extern nlopt_sobol nlopt_sobol_create(unsigned sdim);
+//    extern void nlopt_sobol_destroy(nlopt_sobol s);
+//    extern void nlopt_sobol_next01(nlopt_sobol s, double *x);
+//    extern void nlopt_sobol_next(nlopt_sobol s, double *x, const double *lb, const double *ub);
+//    extern void nlopt_sobol_skip(nlopt_sobol s, unsigned n, double *x);
 
 /* stopping criteria */
     typedef struct {

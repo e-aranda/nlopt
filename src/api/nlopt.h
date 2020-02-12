@@ -180,8 +180,8 @@ NLOPT_EXTERN(nlopt_result) nlopt_result_from_string(const char *name);
 
 #define NLOPT_MINF_MAX_REACHED NLOPT_STOPVAL_REACHED
 
-NLOPT_EXTERN(void) nlopt_srand(unsigned long seed);
-NLOPT_EXTERN(void) nlopt_srand_time(void);
+//NLOPT_EXTERN(void) nlopt_srand(unsigned long seed);
+//NLOPT_EXTERN(void) nlopt_srand_time(void);
 
 NLOPT_EXTERN(void) nlopt_version(int *major, int *minor, int *bugfix);
 

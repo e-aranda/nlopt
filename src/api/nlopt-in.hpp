@@ -528,8 +528,8 @@ namespace nlopt {
 
   //////////////////////////////////////////////////////////////////////
 
-  inline void srand(unsigned long seed) { nlopt_srand(seed); }
-  inline void srand_time() { nlopt_srand_time(); }
+//  inline void srand(unsigned long seed) { nlopt_srand(seed); }
+//  inline void srand_time() { nlopt_srand_time(); }
   inline void version(int &major, int &minor, int &bugfix) {
     nlopt_version(&major, &minor, &bugfix);
   }

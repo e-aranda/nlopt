@@ -216,7 +216,10 @@ set (NLOPT_SOURCES
 #  src/algs/slsqp/slsqp.c src/algs/slsqp/slsqp.h
 #  src/algs/esch/esch.c src/algs/esch/esch.h
   src/api/general.c src/api/options.c src/api/optimize.c src/api/deprecated.c src/api/nlopt-internal.h src/api/nlopt.h src/api/nlopt.hpp src/api/nlopt-in.hpp
-  src/util/mt19937ar.c src/util/sobolseq.c src/util/soboldata.h src/util/timer.c src/util/stop.c src/util/nlopt-util.h src/util/redblack.c src/util/redblack.h src/util/qsort_r.c src/util/rescale.c
+#  src/util/mt19937ar.c src/util/sobolseq.c src/util/soboldata.h 
+src/util/timer.c src/util/stop.c src/util/nlopt-util.h 
+#src/util/redblack.c src/util/redblack.h src/util/qsort_r.c 
+src/util/rescale.c
 )
 
 #if (NLOPT_CXX)

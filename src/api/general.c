@@ -226,7 +226,7 @@ nlopt_result nlopt_result_from_string(const char * name)
 #endif
 
 /*************************************************************************/
-
+/*
 static THREADLOCAL int nlopt_srand_called = 0;
 void NLOPT_STDCALL nlopt_srand(unsigned long seed)
 {
@@ -244,5 +244,5 @@ void nlopt_srand_time_default(void)
     if (!nlopt_srand_called)
         nlopt_srand_time();
 }
-
+*/
 /*************************************************************************/
