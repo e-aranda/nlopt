@@ -206,7 +206,8 @@ set (NLOPT_SOURCES
 #  src/algs/luksan/plis.c src/algs/luksan/plip.c src/algs/luksan/pnet.c src/algs/luksan/mssubs.c src/algs/luksan/pssubs.c src/algs/luksan/luksan.h
 #  src/algs/crs/crs.c src/algs/crs/crs.h
 #  src/algs/mlsl/mlsl.c src/algs/mlsl/mlsl.h
-  src/algs/mma/mma.c src/algs/mma/mma.h src/algs/mma/ccsa_quadratic.c
+  src/algs/mma/mma.c src/algs/mma/mma.h 
+#src/algs/mma/ccsa_quadratic.c
 #  src/algs/cobyla/cobyla.c src/algs/cobyla/cobyla.h
 #  src/algs/newuoa/newuoa.c src/algs/newuoa/newuoa.h
 #  src/algs/neldermead/nldrmd.c src/algs/neldermead/neldermead.h src/algs/neldermead/sbplx.c
